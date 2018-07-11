@@ -1,17 +1,16 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <range-picker :year="2017"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import RangePicker from './components/RangePicker.vue'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    RangePicker
   }
 }
 </script>

@@ -1,0 +1,54 @@
+.rangepicker * {
+    box-sizing: border-box
+}
+
+.rangepicker {
+    display: flex;
+    flex-wrap: wrap
+}
+
+.rangepicker_month {
+    width: 25%;
+    background-color: #fff;
+    border: 1px solid #a6a6a6;
+}
+
+.rangepicker_monthtitle {
+    height: 64px;
+    line-height: 64px;
+    text-align: center;
+    background-color: #455399;
+    color: #fff;
+    text-decoration: uppercase;
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.rangpicker_days {
+    height: 30px;
+    color: #b7c1cd;
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.rangepicker_numbers {
+    display: flex;
+    flex-wrap: wrap;
+    color: #2b2e49;
+    line-height: 28px;
+    text-align: center;
+    justify-content: space-around;
+}
+
+.rangepicker_day {
+    width: 14%;
+}
+
+.rangepicker_out {
+    opacity: 0.3;
+}
