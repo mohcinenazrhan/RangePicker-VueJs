@@ -37,18 +37,42 @@
 }
 
 .rangepicker_numbers {
+    user-select: none;
     display: flex;
     flex-wrap: wrap;
     color: #2b2e49;
     line-height: 28px;
     text-align: center;
-    justify-content: space-around;
+    *justify-content: space-around;
 }
 
 .rangepicker_day {
-    width: 14%;
+    width: 14.28%;
+    height: 40px;
+    line-height: 40px;
+    margin-bottom: 2px;
 }
 
 .rangepicker_out {
     opacity: 0.3;
+}
+
+.rangepicker_range {
+    background-color: #00c6ae;
+    color: #fff
+}
+
+.rangepicker_newrange {
+    background-color: #455399;
+    color: #FFF;
+}
+
+.rangepicker_range-start {
+    border-top-left-radius: 50%;
+    border-bottom-left-radius: 50%;
+}
+
+.rangepicker_range-end {
+    border-top-right-radius: 50%;
+    border-bottom-right-radius: 50%;
 }

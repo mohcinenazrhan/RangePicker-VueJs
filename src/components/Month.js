@@ -13,7 +13,7 @@ export default class Month {
         return date.getMonth() === this.month
     }
 
-    getDays() {
+    getDays () {
         let days = []
         // console.log(this.start, this.start.getDay());
         
