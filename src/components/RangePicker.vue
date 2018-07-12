@@ -1,23 +1,29 @@
 <template>
-  <div class="rangepicker">
-    <div class="rangepicker_month" v-for="(month, index) in months" :key="index">
-      <div class="rangepicker_monthtitle">
-        {{ month.getName() }}
-      </div>
+  <div>
+    <div class="rangepicker">
+      <div class="rangepicker_month" v-for="(month, index) in months" :key="index">
+        <div class="rangepicker_monthtitle">
+          {{ month.getName() }}
+        </div>
 
-      <div class="rangpicker_days">
-        <div v-for="(day, index) in weekdays" :key="index" >{{ day }}</div>
-      </div>
+        <div class="rangpicker_days">
+          <div v-for="(day, index) in weekdays" :key="index" >{{ day }}</div>
+        </div>
 
-      <div class="rangepicker_numbers">
-        <div class="rangepicker_day" v-for="(day, index) in month.getDays()" 
-        :key="index" :class="classForDay(day, month, newRange)" 
-        @mousedown="startDrag(day)"
-        @mouseover="overDay(day)"
-        @dblclick="removeRange(day)">
-          {{ day.getDate() }}
+        <div class="rangepicker_numbers">
+          <div class="rangepicker_day" v-for="(day, index) in month.getDays()" 
+          :key="index" :class="classForDay(day, month, newRange)" 
+          @mousedown="startDrag(day)"
+          @mouseover="overDay(day)"
+          @dblclick="removeRange(day)">
+            {{ day.getDate() }}
+          </div>
         </div>
       </div>
+    </div>
+    <div class="rangepicker_actions">
+      <button class="rangepicker_cancel" @click="cancel">Cancel</button>
+      <button class="rangepicker_save" @click="save">Save</button>
     </div>
   </div>
 </template>
@@ -123,6 +129,13 @@
         // @mouseup="endDrag()"
         this.ranges['ranges'].push(this.newRange)
         this.newRange = null
+      },
+      cancel () {
+        this.$emit('cancel')
+      },
+      save () {
+        this.$emit('input', this.ranges.toTimestamps())
+        this.$emit('save')
       }
     },
     props: {

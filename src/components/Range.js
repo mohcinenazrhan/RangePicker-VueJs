@@ -4,9 +4,17 @@ export default class Range {
         this.end = end
     }
 
-    contains (date) {
-        return date.getTime() >= this.start.getTime() && 
+    contains (range) {
+        if (range instanceof Date) {
+            const date = range
+            return date.getTime() >= this.start.getTime() &&
                 date.getTime() <= this.end.getTime()
+        } else if (range instanceof Range) {
+            return range.getStart().getTime() > this.start.getTime() &&
+                range.getEnd().getTime() < this.end.getTime()
+        } else {
+            throw new Error('Type inconnu')
+        }
     }
 
     intersect (range) {

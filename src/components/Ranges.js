@@ -17,13 +17,21 @@ export default class Ranges {
     }
 
     addRange (range) {
-        for (const key in this.ranges) {
-            if ( this.ranges[key].intersect(range) ) {
-                this.ranges[key].merge(range)
-                return
+        const merged = this.ranges.reduce((m, r) => {
+            if (range.contains(r)) {
+                this.removeRange(r)
+            } else {
+                if (r.intersect(range)) {
+                    r.merge(range)
+                    return true
+                }
             }
+            return m
+        }, false)
+
+        if (merged === false) {
+            this.ranges.push(range)
         }
-        this.ranges.push(range)
     }
 
     removeRange (range) {
@@ -34,5 +42,11 @@ export default class Ranges {
         return new Ranges(ranges.map(range => {
             return new Range(new Date(range[0]), new Date(range[1]))
         }))
+    }
+
+    toTimestamps () {
+        return this.ranges.map(range => {
+            return [range.getStart().getTime(), range.getEnd().getTime()]
+        })
     }
 }
