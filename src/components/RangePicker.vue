@@ -73,8 +73,24 @@
         return classes
       },
       startDrag (day) {
-        this.stratDate = day
-        this.newRange = new Range(day, day)
+        let range = this.ranges.contains(day)
+        if (range) {
+          if (range.isStart(day)) {
+            this.newRange = range
+            this.ranges.removeRange(range)
+            this.stratDate = range.getEnd()
+            this.cursor = 0
+          } else if (range.isEnd(day)) {
+            this.newRange = range
+            this.ranges.removeRange(range)
+            this.stratDate = range.getStart()
+            this.cursor = 1
+          }
+        } else {
+          this.stratDate = day
+          this.newRange = new Range(day, day)
+        }
+        
       },
       overDay (day) {
         if (this.newRange !== null) {
