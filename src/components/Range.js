@@ -9,6 +9,23 @@ export default class Range {
                 date.getTime() <= this.end.getTime()
     }
 
+    intersect (range) {
+        return this.contains(range.getStart()) ||
+         this.contains(range.getEnd()) ||
+        (range.getStart().getTime() < this.start.getTime() &&
+         range.getEnd().getTime() > this.end.getTime())
+    }
+
+    merge (range) {
+        if (range.getStart().getTime() < this.start.getTime()) {
+            this.setStart(range.getStart())
+        }
+
+        if (range.getEnd().getTime() > this.end.getTime()) {
+            this.setEnd(range.getEnd())
+        }
+    }
+
     getStart () {
         return this.start
     }

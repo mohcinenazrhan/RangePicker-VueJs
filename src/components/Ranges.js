@@ -17,6 +17,12 @@ export default class Ranges {
     }
 
     addRange (range) {
+        for (const key in this.ranges) {
+            if ( this.ranges[key].intersect(range) ) {
+                this.ranges[key].merge(range)
+                return
+            }
+        }
         this.ranges.push(range)
     }
     static fromTimestamps (ranges) {
